@@ -11,11 +11,11 @@ export const EventSchema = new Schema({
   startDate: { type: Date, required: true },
   isCanceled: { type: Boolean, required: true, default: false },
   type: { type: String, enum: ['concert', 'convention', 'sport', 'digital'], required: true },
-  creatorId: { type: ObjectId, ref: 'Profile' }
+  creatorId: { type: ObjectId, required: true, ref: 'Profile' }
 },
 { timestamps: true, toJSON: { virtuals: true } })
 
-EventSchema.virtual('creator', {
+EventSchema.virtual('account', {
   localField: 'creatorId',
   ref: 'Profile',
   foreignField: '_id',

@@ -4,13 +4,13 @@ import { logger } from '../utils/Logger'
 
 class EventsService {
   async getAll(query = {}) {
-    const res = await dbContext.Events.find({}).populate('creator', 'name picture')
+    const res = await dbContext.Events.find({}).populate('account', 'name picture')
     logger.log(res)
     return res
   }
 
   async getById(id) {
-    const found = await dbContext.Events.findById(id).populate('creator', 'name picture')
+    const found = await dbContext.Events.findById(id).populate('account', 'name picture')
     if (!found) {
       throw new BadRequest('Invalid ID')
     }
@@ -24,9 +24,11 @@ class EventsService {
   }
 
   async edit(eventId, body) {
-    const foundEvent = await this.getById(eventId)
+    const foundEvent = await dbContext.Events.findById(eventId).populate('account', 'name picture')
     if (foundEvent.isCanceled === true) {
       throw new BadRequest('this event is canceled')
+    } else if (foundEvent.creatorId.toString() !== body.creatorId) {
+      throw new BadRequest('ACCESS DENIED')
     }
     const updatedEvent = await dbContext.Events.findByIdAndUpdate(eventId, body, { new: true })
     return updatedEvent
