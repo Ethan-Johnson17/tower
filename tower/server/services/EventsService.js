@@ -24,11 +24,13 @@ class EventsService {
   }
 
   async edit(eventId, body) {
-    const foundEvent = await dbContext.Events.findById(eventId).populate('account', 'name picture')
+    const foundEvent = await this.getById(eventId)
+    logger.log('foundevent', foundEvent.creatorId)
+    logger.log('body', body)
     if (foundEvent.isCanceled === true) {
       throw new BadRequest('this event is canceled')
     } else if (foundEvent.creatorId.toString() !== body.creatorId) {
-      throw new BadRequest('ACCESS DENIED')
+      throw new Forbidden('ACCESS DENIED')
     }
     const updatedEvent = await dbContext.Events.findByIdAndUpdate(eventId, body, { new: true })
     return updatedEvent
