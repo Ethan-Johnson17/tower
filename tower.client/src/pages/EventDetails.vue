@@ -1,8 +1,8 @@
 <template>
-  <div class="row border-primary bg-primary ">
-    <div class="col-md-4"><img :src="eventDetails.coverImg" alt="Event Cover image" width="400" class="m-3">
+  <div class="row border-primary bg-primary justify-content-around">
+    <div class="col-md-4"><img :src="eventDetails.coverImg" alt="Event Cover image" width="400" class="mt-3 img-fluid">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-7 ms-3">
       <div class="row justify-content-between my-3">
         <div class="col-md-8 f-20">{{eventDetails.name}}</div>
         <div class="col-md-3">{{eventDetails.startDate}} DAY</div>
@@ -32,7 +32,7 @@
             <i class="mdi mdi-pencil"></i> </button>
         </div>
       </div>
-      <div class="row justify-content-between" v-else>
+      <div class="row justify-content-center me-2 mb-2" v-else>
         <div class="col-md-10 text-center f-20 text-light bg-danger lighten-20 border border-light">Event Canceled</div>
       </div>
       <div class="row justify-content-end me-3">
