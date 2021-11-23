@@ -6,8 +6,8 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
+    <div class="bg-grey darken-50 text-light text-center p-4">
+      Ethan's coding career 🎢
     </div>
   </footer>
 </template>

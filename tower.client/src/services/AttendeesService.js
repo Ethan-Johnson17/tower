@@ -13,6 +13,12 @@ class AttendeesService {
   async attendEvent(body) {
     const res = await api.post('api/attendees', body)
   }
+
+  async getEventsForAccount() {
+    const res = await api.get('account/attendees')
+    logger.log('accountAttend', res.data)
+    AppState.myEvents = res.data
+  }
 }
 
 export const attendeesService = new AttendeesService
