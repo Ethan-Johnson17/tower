@@ -75,7 +75,7 @@ export class EventsController extends BaseController {
       const event = req.body
       event._id = id
       delete event.isCanceled
-      const updatedEvent = await eventsService.edit(id, event)
+      const updatedEvent = await eventsService.edit(id, event, req.userInfo.id)
       return res.send(updatedEvent)
     } catch (error) {
       next(error)
@@ -85,7 +85,7 @@ export class EventsController extends BaseController {
   async isCanceled(req, res, next) {
     try {
       const id = req.params.id
-      const canceledEvent = await eventsService.edit(id, { isCanceled: true })
+      const canceledEvent = await eventsService.edit(id, { isCanceled: true }, req.userInfo.id)
       return res.send(canceledEvent)
     } catch (error) {
       next(error)
