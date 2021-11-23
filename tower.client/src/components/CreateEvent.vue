@@ -13,31 +13,32 @@
           <div class="modal-body">
             <form @submit.prevent="handleSubmit">
               <label for="eventName">Event Name</label>
-              <input v-model="state.editable.name" type="text" class="form-control mb-3" placeholder="Event Name"
-                aria-label="Example text with button addon" aria-describedby="button-addon1" id="eventName" />
+              <input required v-model="state.editable.name" type="text" class="form-control mb-3"
+                placeholder="Event Name" aria-label="Example text with button addon" aria-describedby="button-addon1"
+                id="eventName" />
 
               <label for="eventImg">Event Image</label>
-              <input v-model="state.editable.coverImg" type="url" class="form-control mb-3"
+              <input required v-model="state.editable.coverImg" type="url" class="form-control mb-3"
                 placeholder="Event Cover Image" aria-label="Example text with button addon"
                 aria-describedby="button-addon1" id="eventImg" />
 
               <label for="eventDescription">Event Description</label>
-              <textarea v-model="state.editable.description" type="text" class="form-control mb-3"
+              <textarea required v-model="state.editable.description" type="text" class="form-control mb-3"
                 placeholder="Event Description" aria-label="Example text with button addon"
                 aria-describedby="button-addon1" id="eventDescription" />
 
               <label for="eventCap">Event Capacity</label>
               <input v-model="state.editable.capacity" type="text" class="form-control mb-3"
                 placeholder="Event Description" aria-label="Example text with button addon"
-                aria-describedby="button-addon1" id="eventCap" />
+                aria-describedby="button-addon1" id="eventCap" required />
 
               <label for="eventLocation">Event Location</label>
-              <input v-model="state.editable.location" type="text" class="form-control mb-3"
+              <input required v-model="state.editable.location" type="text" class="form-control mb-3"
                 placeholder="Event Location" aria-label="Example text with button addon"
                 aria-describedby="button-addon1" id="eventLocation" />
 
               <label for="eventDate">Event Start Date</label>
-              <input v-model="state.editable.startDate" type="date" class="form-control mb-3"
+              <input required v-model="state.editable.startDate" type="date" class="form-control mb-3"
                 placeholder="Event Start date" aria-label="Example text with button addon"
                 aria-describedby="button-addon1" id="eventDate" />
 

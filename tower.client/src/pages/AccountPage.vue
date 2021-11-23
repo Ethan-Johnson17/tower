@@ -4,15 +4,9 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
     <h3>My Reservations</h3>
-    <div class="row">
-      <div class="col-md-3" v-for="event in myAttendance" key="event.id">
-        <Event :eventProp="event" />
-      </div>
-    </div>
-    <h3>My Events</h3>
     <div class="row justify-content-center">
       <div class="col-md-8 " v-for="event in myEvents" key="event.id">
-        <Event :eventProp="event" />
+        <Event :eventProp="event.event" />
       </div>
     </div>
   </div>
@@ -39,9 +33,9 @@
     setup(props) {
       const account = computed(() => AppState.account)
 
-      onMounted(() => {
-        eventsService.getAll('?creatorId=' + AuthService.userInfo.id)
-        attendeesService.getEventsForAccount()
+      onMounted((account) => {
+        eventsService.getAll('api/events')
+        attendeesService.getEventsForAccount(account)
       })
       return {
         account: computed(() => AppState.account),

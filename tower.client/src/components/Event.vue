@@ -4,7 +4,7 @@
       <div class="col-md-12 p-0 m-0 rounded-3"><img :src="eventProp.coverImg" alt="Cover Image" class="img-fluid"></div>
       <div class="col-md-12 text-light">{{eventProp.name}}</div>
       <div class="col-md-12 text-light">{{eventProp.location}}</div>
-      <div class="col-md-12 text-light">{{eventProp.startDate}}</div>
+      <div class="col-md-12 text-light">{{formatDate(eventProp.startDate)}}</div>
       <div class="col-md-12 bg-danger lighten-20 text-center" v-if="eventProp.isCanceled">Canceled</div>
       <div class="col-md-12 text-light text-end" v-else>{{eventProp.capacity}} spots left</div>
     </router-link>
@@ -32,7 +32,10 @@
 
       return {
         events: computed(() => AppState.events),
-
+        formatDate(dateString) {
+          let date = new Date(dateString)
+          return date.toDateString() + ' ' + date.getDay()
+        }
 
       }
     }

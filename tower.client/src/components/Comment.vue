@@ -5,9 +5,10 @@
         <div class="col-md-12 text-end m-1 pe-3">Join the conversation</div>
         <form @submit.prevent="addComment">
           <div class="col-md-12 p-0 pe-2m-2 rounded-3">
-            <textarea name="comment" id="createComment" style="resize:none" class="form-control"
+            <textarea name="comment" required id="createComment" style="resize:none" class="form-control"
               v-model="newComment.body"></textarea>
-            <button @click.prevent="addComment" type="submit" aria-label="Add Comment" class="my-2">post
+            <button @click.prevent="addComment" :disabled="newComment.body===nulll" type="submit"
+              aria-label="Add Comment" class="my-2">post
               comment</button>
           </div>
           <!-- <div class="col-md-3">

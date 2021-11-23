@@ -5,11 +5,10 @@
     <div class="col-md-7 ms-3">
       <div class="row justify-content-between my-3">
         <div class="col-md-8 f-20">{{eventDetails.name}}</div>
-        <div class="col-md-3">{{eventDetails.startDate}} DAY</div>
+        <div class="col-md-3">{{eventDate}} </div>
       </div>
       <div class="row justify-content-between my-3">
-        <div class="col-md-3">{{eventDetails.location}}</div>
-        <div class="col-md-3">{{eventDetails.startDate}} TIME</div>
+        <div class="col-md-5">{{eventDetails.location}}</div>
       </div>
       <div class="row justify-content-between my-3">
         <div class="col-md-12">{{eventDetails.description}}</div>
@@ -22,10 +21,10 @@
         <div v-else-if="attending" class="col-md-3"><button class="btn btn-warning"
             :disabled="!account.id || attending">Your spot is saved!</button>
         </div>
-        <div v-else class="col-md-3"><button class="btn btn-warning" @click="attendEvent"
+        <div v-else class="col-md-3 mb-2"><button class="btn btn-warning" @click="attendEvent"
             :disabled="!account.id || eventDetails.capacity === 0">Attend</button>
         </div>
-        <div class="col-md-5 mt-5 text-end">
+        <div class="col-md-5 mt-5 text-end" v-if="account.id == eventDetails.creatorId">
           <button class="btn btn-danger m-3" title="Cancel Event" @click="cancel"><i class="mdi mdi-cancel"></i>
           </button>
           <button class="btn btn-warning m-3" title="Edit Event" data-bs-toggle="modal" data-bs-target="#create">
@@ -83,6 +82,10 @@
       })
       return {
         eventDetails: computed(() => AppState.activeEvent),
+        eventDate: computed(() => {
+          let date = new Date(AppState.activeEvent.startDate)
+          return date.toDateString()
+        }),
         account: computed(() => AppState.account),
         attendees: computed(() => AppState.attendees),
         attending: computed(() => {
