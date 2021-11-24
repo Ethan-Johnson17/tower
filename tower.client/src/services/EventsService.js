@@ -23,10 +23,12 @@ class EventsService {
     Pop.toast('created', 'success')
   }
 
-  async edit(event) {
-    const res = await api.put('api/events' + event.id, event)
+  async edit(id, event) {
+    const res = await api.put('api/events/' + id, event)
     logger.log('edit', res.data)
     AppState.activeEvent = res.data
+    Pop.toast('Edited', 'success')
+
     const index = AppState.events.findIndex(e => e.id === AppState.activeEvent.id)
     if (index === -1) {
       AppState.events.push(AppState.activeEvent)

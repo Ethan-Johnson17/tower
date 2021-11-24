@@ -27,7 +27,7 @@
         <div class="col-md-5 mt-5 text-end" v-if="account.id == eventDetails.creatorId">
           <button class="btn btn-danger m-3" title="Cancel Event" @click="cancel"><i class="mdi mdi-cancel"></i>
           </button>
-          <button class="btn btn-warning m-3" title="Edit Event" data-bs-toggle="modal" data-bs-target="#create">
+          <button class="btn btn-warning m-3" title="Edit Event" data-bs-toggle="modal" data-bs-target="#edit">
             <i class="mdi mdi-pencil"></i> </button>
         </div>
       </div>
@@ -47,7 +47,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8 text-start">What people are saying about <b>{{eventDetails.name}}</b></div>
     <Comment />
-
+    <EditModal />
   </div>
 </template>
 

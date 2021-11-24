@@ -3,15 +3,15 @@
     <!-- <button type="button" class="btn border border-primary" data-bs-toggle="modal" data-bs-target="#create">
       New Event
     </button> -->
-    <div id="create" class="modal" tabindex="-1">
+    <div id="edit" class="modal" tabindex="-1">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-dark">{{ eventInfo.id ? "Edit Event" : "New Event"}}</h5>
+            <h5 class="modal-title text-dark">Edit Event</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form @submit.prevent="handleSubmit">
+            <form @submit.prevent="edit">
               <label for="eventName">Event Name</label>
               <input required v-model="state.editable.name" type="text" class="form-control mb-3"
                 placeholder="Event Name" aria-label="Example text with button addon" aria-describedby="button-addon1"
@@ -58,9 +58,9 @@
                 >
                   Close
                 </button> -->
-                <button type="submit" @click.prevent="handleSubmit" class="btn btn-primary" data-bs-target="#create"
+                <button type="submit" @click.prevent="edit" class="btn btn-primary" data-bs-target="#edit"
                   data-bs-dismiss="modal">
-                  Create
+                  Edit
                 </button>
               </div>
             </form>
@@ -91,6 +91,8 @@
       return {
         state,
         eventInfo: computed(() => AppState.events),
+
+
         async edit() {
           try {
             let id = state.editable.id
